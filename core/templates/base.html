@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de Actividades {{title}}</title>
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'core/css/estilos.css' %}"/>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2">
+                <img class="img-fluid" src="{%static 'core\logo_INF.png' %}" alt="Logo Departamento Informática">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-3">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Segmento</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col-2"></div>
+            <div class="col-3">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Tipo</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col-2"></div>
+        </div> <br>
+        <div class="row"></div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Hito</th>
+                        <th scope="col">Fecha Inicio</th>
+                        <th scope="col">Fecha Término</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Segmento</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Mark</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <td>Mark</td>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <td>Mark</td>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>@twitter</td>
+                        <td>@mdo</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'core/js/bootstrap.js' %}"></script>
+</body>
+</html>
