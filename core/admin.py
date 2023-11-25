@@ -1,4 +1,13 @@
 from django.contrib import admin
 from .models import Evento, Segmento
 
-admin.site.register(Evento)
+class EventoAdmin(admin.ModelAdmin):
+    list_display = ('Titulo', 'fecha_inicio', 'fecha_termino', 'Tipo')
+    filter_horizontal = ('Segmento',) 
+
+class SegmentoAdmin(admin.ModelAdmin):
+    list_display = ('nombre',)
+
+# Registra las clases de administración personalizadas
+admin.site.register(Evento, EventoAdmin)
+admin.site.register(Segmento, SegmentoAdmin)
