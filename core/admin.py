@@ -8,6 +8,5 @@ class EventoAdmin(admin.ModelAdmin):
 class SegmentoAdmin(admin.ModelAdmin):
     list_display = ('nombre',)
 
-# Registra las clases de administración personalizadas
 admin.site.register(Evento, EventoAdmin)
 admin.site.register(Segmento, SegmentoAdmin)

@@ -4,14 +4,14 @@ from django.contrib.auth.models import User
 
 class Segmento(models.Model):
     SEGMENTO_CHOICES = [
-        ('C_USM', 'Comunidad USM'),
+        ('C', 'Comunidad USM'),
         ('E', 'Estudiante'),
         ('P', 'Profesor'),
         ('J', 'Jefe de Carrera'),
     ]
     nombre = models.CharField(max_length=35, choices=SEGMENTO_CHOICES)
 
-    def __str__(self) -> str:
+    def str(self) -> str:
         return self.nombre
 
 class Evento(models.Model):
@@ -36,13 +36,13 @@ class Evento(models.Model):
     Tipo = models.CharField(max_length=30, choices=TIPO_CHOICES)
     Segmento = models.ManyToManyField(Segmento, related_name='eventos')
 
-    def __str__(self) -> str:
+    def str(self) -> str:
         return self.Titulo
 
 class EventoForm(forms.ModelForm):
     class Meta:
         model = Evento
-        fields = ['fecha_inicio', 'fecha_termino', 'Titulo', 'Descripcion', 'Tipo', 'Segmento']
+        fields = ['Titulo', 'Descripcion', 'Tipo', 'Segmento']
 
     Segmento = forms.ModelMultipleChoiceField(
         queryset=Segmento.objects.all(),
