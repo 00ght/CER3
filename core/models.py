@@ -4,14 +4,14 @@ from django.contrib.auth.models import User
 
 class Segmento(models.Model):
     SEGMENTO_CHOICES = [
-        ('C', 'Comunidad USM'),
-        ('E', 'Estudiante'),
-        ('P', 'Profesor'),
-        ('J', 'Jefe de Carrera'),
+        ('Comunidad USM', 'Comunidad USM'),
+        ('Estudiante', 'Estudiante'),
+        ('Profesor', 'Profesor'),
+        ('Jefe de Carrera', 'Jefe de Carrera'),
     ]
     nombre = models.CharField(max_length=35, choices=SEGMENTO_CHOICES)
 
-    def str(self) -> str:
+    def __str__(self):
         return self.nombre
 
 class Evento(models.Model):
@@ -22,21 +22,21 @@ class Evento(models.Model):
     TIPO_CHOICES = [
         ('V', 'Vacaciones'),
         ('F', 'Feriado'),
-        ('S_A', 'Suspension_de_actividades'),
-        ('S_A_PM', 'Suspension_de_actividades_PM'),
-        ('P', 'Periodo_Lectivo'),
-        ('S_E', 'Suspension_de_evaluaciones'),
+        ('S_A', 'Suspension de actividades'),
+        ('S_A_PM', 'Suspension de actividades (PM)'),
+        ('P', 'Periodo Lectivo'),
+        ('S_E', 'Suspension de evaluaciones'),
         ('C', 'Ceremonia'),
         ('E', 'EDDA'),
         ('A', 'Ayudantias'),
-        ('H', 'Hito_Academico'),
-        ('S', 'Secretaria_Academica'),
+        ('H', 'Hito Academico'),
+        ('S', 'Secretaria Academica'),
         ('Q', 'QAI'),
     ]
     Tipo = models.CharField(max_length=30, choices=TIPO_CHOICES)
     Segmento = models.ManyToManyField(Segmento, related_name='eventos')
 
-    def str(self) -> str:
+    def __str__(self):
         return self.Titulo
 
 class EventoForm(forms.ModelForm):
