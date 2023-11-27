@@ -20,7 +20,7 @@
             <form method="get" action="{% url 'home' %}"></form>
             <div class="col-3">
                 <select class="form-select " aria-label="Default select example">
-                  <option selected> Seleccione</option>
+                  <option selected> Segmento</option>
                   {% for segmento in segmentos %}
                     <option  value={{segmento.nombre}} {% if segmento_eleguido == segmento.nombre %} selected {% endif %} >
                     {{segmento.nombre}}</option>
@@ -30,7 +30,7 @@
             <div class="col-2"></div>
             <div class="col-3">
               <select class="form-select " aria-label="Default select example">
-                <option selected> Seleccione</option>
+                <option selected> Tipo</option>
                 {% for tipo in tipos %}
                   <option  value={{tipo.nombre}} {% if tipo_eleguido == tipo.nombre %} selected {% endif %} >
                   {{tipo.nombre}}</option>
