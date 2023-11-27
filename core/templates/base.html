@@ -17,12 +17,14 @@
         </div>
         <div class="row">
             <div class="col-2"></div>
+            <form method="get" action="{% url 'home' %}"></form>
             <div class="col-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Segmento</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select class="form-select " aria-label="Default select example">
+                  <option selected> Seleccione</option>
+                  {% for segmento in segmentos %}
+                    <option  value={{segmento.nombre}} {% if segmento_eleguido == segmento.nombre %} selected {% endif %} >
+                    {{segmento.nombre}}</option>
+                  {% endfor %}
                 </select>
             </div>
             <div class="col-2"></div>
