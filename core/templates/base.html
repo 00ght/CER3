@@ -17,8 +17,8 @@
         </div>
         <div class="row">
             <div class="col-2"></div>
-            <form method="get" action="{% url 'home' %}"></form>
             <div class="col-3">
+              <form method="get" action="{% url 'home' %}"></form>
                 <select class="form-select " aria-label="Default select example">
                   <option selected> Segmento</option>
                   {% for segmento in segmentos %}
@@ -30,10 +30,10 @@
             <div class="col-2"></div>
             <div class="col-3">
               <select class="form-select " aria-label="Default select example">
-                <option selected> Tipo</option>
+                <option selected> Tipos</option>
                 {% for tipo in tipos %}
-                  <option  value={{tipo.nombre}} {% if tipo_eleguido == tipo.nombre %} selected {% endif %} >
-                  {{tipo.nombre}}</option>
+                  <option  value={{tipo}} {% if tipo_eleguido == tipo %} selected {% endif %} >
+                  {{tipo}}</option>
                 {% endfor %}
               </select>
           </div>
@@ -43,7 +43,10 @@
         <div class="row">
             <div class="col-1"></div>
             <div class="col-10">
-                <table class="table">
+              <div class="fondo text-center border">
+                <h5>Actividades</h5>
+              </div>
+                <table class="table table-bordered">              
                     <thead>
                       <tr>
                         <th scope="col">Hito</th>
