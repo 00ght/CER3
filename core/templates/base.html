@@ -10,85 +10,94 @@
 </head>
 <body>
     <div class="container-fluid"> 
-      <div class="row">
-        <div class="col-xl-5 d-none d-xl-block d-xxl-none bg-light"></div>
-          <div class="col-xl-7 d-none d-xl-block d-xxl-none bg-light">
-              <nav id="navbar">
-                <ul class="nav">
-                  <li>
-                    <li class="nav-item">
-                      <a class="nav-link" style="color: black" href="#">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" style="color: black" href="admin/">Administración</a>
-                    </li>
-                  </li>
-                </ul>
-              </nav>
-          </div>
-      </div>
-
-
         <div class="row">
-            <div class="col-2">
-                <img class="img-fluid" src="{%static 'core\logo_INF.png' %}" alt="Logo Departamento Informática">
+            <div class="col-xl-5 d-none d-xl-block d-xxl-none bg-light"></div>
+            <div class="col-xl-7 d-none d-xl-block d-xxl-none bg-light">
+                <nav id="navbar">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: black" href="#">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: black" href="admin/">Administración</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-3">
-              <form method="get" action="{% url 'home' %}"></form>
-                <select class="form-select " aria-label="Default select example">
-                  <option selected> Segmento</option>
-                  {% for segmento in segmentos %}
-                    <option  value={{segmento.nombre}} {% if segmento_elegido == segmento.nombre %} selected {% endif %} >
-                    {{segmento.nombre}}</option>
-                  {% endfor %}
-                </select>
+
+        <form method="get" action="{% url 'home' %}">
+            <div class="row">
+                <div class="col-2">
+                    <img class="img-fluid" src="{%static 'core\logo_INF.png' %}" alt="Logo Departamento Informática">
+                </div>
             </div>
-            <div class="col-2"></div>
-            <div class="col-3">
-              <select class="form-select " aria-label="Default select example">
-                <option selected> Tipos</option>
-                {% for tipo in tipos %}
-                  <option  value={{tipo}} {% if tipo_elegido == tipo %} selected {% endif %} >
-                  {{tipo.1}}</option>
-                {% endfor %}
-              </select>
-          </div>
-            <div class="col-2"></div>
-        </div> <br>
-        <div class="row"></div>
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10">
-              <div class="text-center border bg-light">
-                <h5>Actividades</h5>
-              </div>
-                <table class="table table-bordered table-striped table-hover">              
-                    <thead>
-                      <tr>
-                        <th scope="col">Hito</th>
-                        <th scope="col">Fecha Inicio</th>
-                        <th scope="col">Fecha Término</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Segmento</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        {%for evento in eventos %}
-                        <tr>
-                          <td>{{evento.Titulo}}</td>
-                          <td>{{evento.fecha_inicio}}</td>
-                          <td>{{evento.fecha_termino}}</td>
-                          <td>{{evento.Tipo}}</td>
-                          <td>{{evento.Segmento}}</td>
-                        </tr>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-3">
+                    <select class="form-select" name="segmento" aria-label="Default select example">
+                        <option selected>Segmento</option>
+                        {% for segmento in segmentos %}
+                            <option value="{{ segmento.nombre }}" {% if segmento_elegido == segmento.nombre %} selected {% endif %} >
+                                {{ segmento.nombre }}
+                            </option>
                         {% endfor %}
-                    </tbody>
-                  </table>
+                    </select>
+                </div>
+                <div class="col-2"></div>
+                <div class="col-3">
+                    <select class="form-select" name="tipo" aria-label="Default select example">
+                        <option selected>Tipo</option>
+                        {% for tipo in tipos %}
+                            <option value="{{ tipo.0 }}" {% if tipo_elegido == tipo.0 %} selected {% endif %} >
+                                {{ tipo.1 }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-2"><button type="submit">Filtrar</button> </div>
+            </div> <br>
+            
+            <div class="row"></div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <div class="text-center border bg-light">
+                        <h5>Actividades</h5>
+                    </div>
+                    
+                    <table class="table table-bordered table-striped table-hover">              
+                        <thead>
+                            <tr>
+                                <th scope="col">Hito</th>
+                                <th scope="col">Fecha Inicio</th>
+                                <th scope="col">Fecha Término</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Segmento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for evento in eventos %}
+                                <tr>
+                                    <td>{{ evento.Titulo }}</td>
+                                    <td>{{ evento.fecha_inicio }}</td>
+                                    <td>{{ evento.fecha_termino }}</td>
+                                    <td>
+                                      {{ evento.get_Tipo_display }}
+                                    </td>
+                                    <td>
+                                      {% for segmento in evento.Segmento.all %}
+                                          {{ segmento.nombre }}
+                                          {% if not forloop.last %}, {% endif %}
+                                      {% endfor %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
     <script src="{% static 'core/js/bootstrap.js' %}"></script>
 </body>
