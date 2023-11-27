@@ -10,3 +10,4 @@ class SegmentoAdmin(admin.ModelAdmin):
 
 admin.site.register(Evento, EventoAdmin)
 admin.site.register(Segmento, SegmentoAdmin)
+

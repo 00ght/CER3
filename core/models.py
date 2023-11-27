@@ -11,12 +11,13 @@ class Segmento(models.Model):
     ]
     nombre = models.CharField(max_length=35, choices=SEGMENTO_CHOICES)
 
-    def __str__(self):
+    def __str__(self)->str:
         return self.nombre
 
+
 class Evento(models.Model):
-    fecha_inicio = models.DateTimeField(auto_now_add=True)
-    fecha_termino = models.DateTimeField(auto_now_add=True)
+    fecha_inicio = models.DateTimeField(auto_now_add=False)
+    fecha_termino = models.DateTimeField(auto_now_add=False)
     Titulo = models.CharField(max_length=55)
     Descripcion = models.CharField(max_length=105)
     TIPO_CHOICES = [
@@ -36,7 +37,7 @@ class Evento(models.Model):
     Tipo = models.CharField(max_length=30, choices=TIPO_CHOICES)
     Segmento = models.ManyToManyField(Segmento, related_name='eventos')
 
-    def __str__(self):
+    def __str__(self)->str:
         return self.Titulo
 
 class EventoForm(forms.ModelForm):
@@ -48,3 +49,4 @@ class EventoForm(forms.ModelForm):
         queryset=Segmento.objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
+

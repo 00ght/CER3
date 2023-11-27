@@ -10,6 +10,7 @@ def index(request):
         'segmentos_totales': Segmento.objects.count(),
         'segmentos': Segmento.objects.all(),
         'segmento_eleguido': request.GET.get('segmento')
+        
     }
 
     return render(request, 'base.html', data)
