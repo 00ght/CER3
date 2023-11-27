@@ -41,7 +41,7 @@
                 <select class="form-select " aria-label="Default select example">
                   <option selected> Segmento</option>
                   {% for segmento in segmentos %}
-                    <option  value={{segmento.nombre}} {% if segmento_eleguido == segmento.nombre %} selected {% endif %} >
+                    <option  value={{segmento.nombre}} {% if segmento_elegido == segmento.nombre %} selected {% endif %} >
                     {{segmento.nombre}}</option>
                   {% endfor %}
                 </select>
@@ -51,7 +51,7 @@
               <select class="form-select " aria-label="Default select example">
                 <option selected> Tipos</option>
                 {% for tipo in tipos %}
-                  <option  value={{tipo}} {% if tipo_eleguido == tipo %} selected {% endif %} >
+                  <option  value={{tipo}} {% if tipo_elegido == tipo %} selected {% endif %} >
                   {{tipo.1}}</option>
                 {% endfor %}
               </select>
@@ -62,10 +62,10 @@
         <div class="row">
             <div class="col-1"></div>
             <div class="col-10">
-              <div class="fondo text-center border">
+              <div class="text-center border bg-light">
                 <h5>Actividades</h5>
               </div>
-                <table class="table table-bordered">              
+                <table class="table table-bordered table-striped table-hover">              
                     <thead>
                       <tr>
                         <th scope="col">Hito</th>
@@ -76,26 +76,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Mark</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td>Mark</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td>Mark</td>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                        <td>@mdo</td>
-                      </tr>
+                        {%for evento in eventos %}
+                        <tr>
+                          <td>{{evento.Titulo}}</td>
+                          <td>{{evento.fecha_inicio}}</td>
+                          <td>{{evento.fecha_termino}}</td>
+                          <td>{{evento.Tipo}}</td>
+                          <td>{{evento.Segmento}}</td>
+                        </tr>
+                        {% endfor %}
                     </tbody>
                   </table>
             </div>

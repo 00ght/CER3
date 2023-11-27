@@ -9,9 +9,10 @@ def index(request):
         "title": title,
         'segmentos_totales': Segmento.objects.count(),
         'segmentos': Segmento.objects.all(),
-        'segmento_eleguido': request.GET.get('segmento'),
+        'segmento_elegido': request.GET.get('segmento'),
         'tipos': Evento.TIPO_CHOICES,
-        'tipo_eleguido': request.GET.get('Evento.Tipo')
+        'tipo_elegido': request.GET.get('Evento.Tipo'),
+        'eventos': Evento.objects.all()
     }
 
     return render(request, 'base.html', data)

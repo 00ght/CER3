@@ -17,8 +17,8 @@ class Segmento(models.Model):
 
 class User(AbstractUser):
     segmento=models.ForeignKey(Segmento,null=True, on_delete=models.CASCADE)
-    def __str__(self) -> str:
-        return self.nombre
+    '''def __str__(self) -> str:
+        return self.segmento''' #con esto no deja crear usuarios
 
 class Evento(models.Model):
     fecha_inicio = models.DateTimeField(auto_now_add=False)
