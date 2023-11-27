@@ -1,6 +1,7 @@
 from django import forms
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 class Segmento(models.Model):
     SEGMENTO_CHOICES = [
@@ -14,6 +15,10 @@ class Segmento(models.Model):
     def __str__(self)->str:
         return self.nombre
 
+class User(AbstractUser):
+    segmento=models.ForeignKey(Segmento,null=True, on_delete=models.CASCADE)
+    def __str__(self) -> str:
+        return self.nombre
 
 class Evento(models.Model):
     fecha_inicio = models.DateTimeField(auto_now_add=False)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Evento, Segmento
+from .models import Evento, Segmento, User
 
 class EventoAdmin(admin.ModelAdmin):
     list_display = ('Titulo', 'fecha_inicio', 'fecha_termino', 'Tipo')
@@ -10,4 +10,5 @@ class SegmentoAdmin(admin.ModelAdmin):
 
 admin.site.register(Evento, EventoAdmin)
 admin.site.register(Segmento, SegmentoAdmin)
+admin.site.register(User)
 
