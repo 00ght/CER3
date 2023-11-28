@@ -10,13 +10,15 @@ def index(request):
     eventos = Evento.objects.all()
 
     segmento_elegido = request.GET.getlist('segmento')
-    tipo_elegido = request.GET.get('tipo[]')
+    tipo_elegido = request.GET.getlist('tipo.1')
 
     if segmento_elegido:
-        eventos = eventos.filter(Segmento__nombre__in=segmento_elegido)
+        if 'Segmento' not in segmento_elegido:
+            eventos = eventos.filter(Segmento__nombre__in=segmento_elegido)
 
     if tipo_elegido:
-        eventos = eventos.filter(Tipo=tipo_elegido)
+        if 'Tipo' not in tipo_elegido:
+            eventos = eventos.filter(Tipo__in=tipo_elegido)
 
     data = {
         "title": title,

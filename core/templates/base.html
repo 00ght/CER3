@@ -52,7 +52,7 @@
                   <select class="form-select" name="tipo" aria-label="Default select example">
                       <option selected>Tipo</option>
                       {% for tipo in tipos %}
-                          <option value="{{ tipo.0 }}" {% if tipo_elegido == tipo.0 %} selected {% endif %} >
+                          <option value="{{ tipo.1 }}" {% if tipo_elegido == tipo.0 %} selected {% endif %} >
                               {{ tipo.1 }}
                           </option>
                       {% endfor %}
