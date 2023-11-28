@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from datetime import date
 from django.views import View
 from datetime import date
 from .forms import EventoFilter 
@@ -17,25 +18,17 @@ def index(request):
         #Asignamos segmento segun usuario.
         if segmento_usuario == "Profesor":
             print("Es profesor") #Si el usuario tiene segmento = al nombre -> Filtra por nombre
-            eventosPorSegmento = Evento.objects.filter(Segmento__nombre=segmento_usuario, fecha_inicio__gte=date.today()).order_by('fecha_inicio')
+            eventosPorSegmento = Evento.objects.filter(Segmento_nombre=segmento_usuario, fecha_inicio_gte=date.today()).order_by('fecha_inicio')
         elif segmento_usuario == "Jefe de Carrera": #Si el usuario tiene segmento = al nombre -> Filtra por nombre
             print("Es jefe de carrera")
-            eventosPorSegmento = Evento.objects.filter(Segmento__nombre=segmento_usuario, fecha_inicio__gte=date.today()).order_by('fecha_inicio')
+            eventosPorSegmento = Evento.objects.filter(Segmento_nombre=segmento_usuario, fecha_inicio_gte=date.today()).order_by('fecha_inicio')
 
     else:
         print("Usuario no autenticado")
         #De lo contrario no filtra nada, y entrega las 3 actividades mas cercanas
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
+
+
     segmento_elegido = request.GET.getlist('segmento')
     tipo_elegido = request.GET.get('tipo')
 
