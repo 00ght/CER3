@@ -12,22 +12,26 @@
   @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto+Condensed:ital,wght@0,100;0,300;1,100&display=swap');
 </style>
 <body>
-    <div class="container-fluid"> 
-        <div class="row">
-            <div class="col-xl-5 d-none d-xl-block d-xxl-none bg-light"></div>
-            <div class="col-xl-7 d-none d-xl-block d-xxl-none bg-light">
-                <nav id="navbar">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" style="color: black" href="#">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="color: black" href="admin/">Administración</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+    <div class="container-fluid mt-5"> 
+           
+        <nav id="navbar">
+            <ul class="nav">
+                <a class="navbar-brand" href="#">
+                    <img class="img-fluid" src="{%static 'core\logo_INF.png' %}" alt="Logo Departamento Informática" width="60" height="54" class="d-inline-block align-text-top">
+                </a>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: black" href="#">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: black" href="admin/">Administración</a>
+                </li>
+                {% if user.is_authenticated  %}
+                <li class="nav-item">
+                    <a class="btn btn-danger" href="/admin/logout/">Salir</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
 
         
         
@@ -63,11 +67,6 @@
         
         
         <form method="get" action="{% url 'home' %}">
-          <div class="row">
-              <div class="col-2">
-                  <img class="img-fluid" src="{%static 'core\logo_INF.png' %}" alt="Logo Departamento Informática">
-              </div>
-          </div>
           <div class="row">
               <div class="col-2"></div>
               <div class="col-3">
