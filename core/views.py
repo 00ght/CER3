@@ -13,10 +13,10 @@ def index(request):
         tipos_elegidos = form.cleaned_data.get('Tipo')
 
         if segmentos_elegidos:
-            eventos = eventos.filter(Segmento__in=segmentos_elegidos)
+            eventos = eventos.filter(segmentos_elegidos)
 
         if tipos_elegidos:
-            eventos = eventos.filter(Tipo__in=tipos_elegidos)
+            eventos = eventos.filter(tipos_elegidos)
 
     data = {
         "title": title,
