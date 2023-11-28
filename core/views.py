@@ -1,22 +1,22 @@
-# views.py
 from django.shortcuts import render
+from django.views import View
 from .forms import EventoFilter
 from .models import Evento, Segmento
 
 def index(request):
+    print(request.GET)
+
     title = ""
     eventos = Evento.objects.all()
 
-    form = EventoFilter(request.GET)
-    if form.is_valid():
-        segmentos_elegidos = form.cleaned_data.get('Segmento')
-        tipos_elegidos = form.cleaned_data.get('Tipo')
+    segmento_elegido = request.GET.getlist('segmento')
+    tipo_elegido = request.GET.get('tipo[]')
 
-        if segmentos_elegidos:
-            eventos = eventos.filter(segmentos_elegidos)
+    if segmento_elegido:
+        eventos = eventos.filter(Segmento__nombre__in=segmento_elegido)
 
-        if tipos_elegidos:
-            eventos = eventos.filter(tipos_elegidos)
+    if tipo_elegido:
+        eventos = eventos.filter(Tipo=tipo_elegido)
 
     data = {
         "title": title,
@@ -24,7 +24,8 @@ def index(request):
         'segmentos': Segmento.objects.all(),
         'tipos': Evento.TIPO_CHOICES,
         'eventos': eventos,
-        'form': form
+        'segmento_elegido': segmento_elegido,
+        'tipo_elegido': tipo_elegido,
     }
 
     return render(request, 'base.html', data)
