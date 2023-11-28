@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 
 class Segmento(models.Model):
+    id = models.BigAutoField(primary_key=True)
     SEGMENTO_CHOICES = [
         ('Comunidad USM', 'Comunidad USM'),
         ('Estudiante', 'Estudiante'),

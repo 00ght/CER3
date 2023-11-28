@@ -29,6 +29,39 @@
             </div>
         </div>
 
+        
+        
+        {% load i18n %}
+        <div class="row mb-5">
+            
+        
+        {% if eventosPorSegmento %}
+        {% for evento in eventosPorSegmento %}
+            
+            {% if forloop.counter <= 3 %}
+                <div class="col-4">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            {% language 'es' %}
+                            {{evento.fecha_inicio|date:"d"}}
+                            <br>
+                            {{evento.fecha_inicio|date:"F"}}
+                            {% endlanguage %}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{evento.Titulo}}</h5>
+                            <p class="card-text">{{evento.Descripcion}}<br>{{evento.segmento.nombre}} </p>
+                            
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+        </div>
+        
+        
+        
         <form method="get" action="{% url 'home' %}">
           <div class="row">
               <div class="col-2">
