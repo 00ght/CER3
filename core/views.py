@@ -18,10 +18,10 @@ def index(request):
         #Asignamos segmento segun usuario.
         if segmento_usuario == "Profesor":
             print("Es profesor") #Si el usuario tiene segmento = al nombre -> Filtra por nombre
-            eventosPorSegmento = Evento.objects.filter(Segmento_nombre=segmento_usuario, fecha_inicio_gte=date.today()).order_by('fecha_inicio')
+            eventosPorSegmento = Evento.objects.filter(Segmento__nombre=segmento_usuario, fecha_inicio__gte=date.today()).order_by('fecha_inicio')
         elif segmento_usuario == "Jefe de Carrera": #Si el usuario tiene segmento = al nombre -> Filtra por nombre
             print("Es jefe de carrera")
-            eventosPorSegmento = Evento.objects.filter(Segmento_nombre=segmento_usuario, fecha_inicio_gte=date.today()).order_by('fecha_inicio')
+            eventosPorSegmento = Evento.objects.filter(Segmento__nombre=segmento_usuario, fecha_inicio__gte=date.today()).order_by('fecha_inicio')
 
     else:
         print("Usuario no autenticado")
