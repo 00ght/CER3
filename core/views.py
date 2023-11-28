@@ -37,7 +37,7 @@ def index(request):
    
    
     segmento_elegido = request.GET.getlist('segmento')
-    tipo_elegido = request.GET.getlist('tipo.1')
+    tipo_elegido = request.GET.get('tipo')
 
     if segmento_elegido:
         if 'Segmento' not in segmento_elegido:
@@ -55,7 +55,7 @@ def index(request):
         'eventos': eventos,
         'segmento_elegido': segmento_elegido,
         'tipo_elegido': tipo_elegido,
-        'eventosPorSegmento': eventosPorSegmento,  #  <---- Agregar el resultado de los queryset aquí
+        'eventosPorSegmento': eventosPorSegmento,
     }
 
     return render(request, 'base.html', data)
